@@ -1,0 +1,24 @@
+{
+    "addNewOrgBtnDropdown": ".vs-c-list__btn > svg",
+    "addOrganizationBtn":".vs-c-tooltip-active-sprints .vs-c-list > li",
+    "inputNameOrg": "input[type='text']",
+    "nextBtn": "button[name='next_btn']",
+    "cancelBtn": "button[name='prev_btn']",
+    "closeBtn": "button[name='close-new-board-modal-btn']",
+    "createBtn": "button[name='next_btn']", 
+    "previousBtn": "button[name='prev_btn']",
+    "clickOrg": "div > span > a",
+    "clickConfig": "li[data-cy='organization-configuration']",
+    "deleteOrg": "button > span",
+    "editOrg": "span[title='Edit Organization']",
+    "changeOrgName":"input[name='change-organization-name']" ,
+    "checkEditedOrg": "i[class='el-icon-check']",
+    "confirmPassDeleteOrg": "input[type='password']",
+    "saveConfirmBtn": "button[name='save-btn']",
+    "noticeOkClose": ".vs-c-modal--features-button > .vs-c-btn",
+    "arhiveOrgBtn" : "span[title='Archive Organization']",
+    "orgFromArhived": "class=['vs-c-my-organizations-item-wrapper vs-c-my-organizations-item-wrapper--archived']",
+    "deleteArhivedOrg": "div > button > span",
+    "infoBoardOk": "[class='vs-c-modal--features-button']"
+
+}

@@ -1,0 +1,23 @@
+{
+  "name": "vivify.scrum.cypress.test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MajaC021/Vivify.Scrum.Cypress.Test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MajaC021/Vivify.Scrum.Cypress.Test/issues"
+  },
+  "homepage": "https://github.com/MajaC021/Vivify.Scrum.Cypress.Test#readme",
+  "devDependencies": {
+    "cypress": "^9.6.1"
+  }
+}

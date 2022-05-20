@@ -1,0 +1,18 @@
+{
+    "user": {
+        "invalidPass4char": "1234",
+        "invalidPass": "123456",
+        "invalidEmail": "ttt.com",
+        "nonExistEmail": "nnn@ggg.com",
+        "email": "test123@gmail.com",
+        "pass": "Majovita1990"
+    },
+    "org": {
+        "orgName": "test",
+        "editOrgName": "test123"
+    },
+    "board": {
+        "brdName": "testB",
+        "editBrdName": "testB123"
+    }
+}
