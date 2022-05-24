@@ -7,8 +7,8 @@
     "closeBtn": "button[name='close-new-board-modal-btn']",
     "createBtn": "button[name='next_btn']", 
     "previousBtn": "button[name='prev_btn']",
-    "clickOrg": "div > span > a",
-    "clickConfig": "li[data-cy='organization-configuration']",
+    "clickOrg": "[class='vb-content']",
+    "clickConfig": "[class='vs-l-project__menu'] > ul > li",
     "deleteOrg": "button > span",
     "editOrg": "span[title='Edit Organization']",
     "changeOrgName":"input[name='change-organization-name']" ,
@@ -17,8 +17,8 @@
     "saveConfirmBtn": "button[name='save-btn']",
     "noticeOkClose": ".vs-c-modal--features-button > .vs-c-btn",
     "arhiveOrgBtn" : "span[title='Archive Organization']",
-    "orgFromArhived": "class=['vs-c-my-organizations-item-wrapper vs-c-my-organizations-item-wrapper--archived']",
-    "deleteArhivedOrg": "div > button > span",
+    "orgFromArhived": "[class='vs-c-my-organization organization-list-item']",
+    "deleteArhivedOrg": "span[title='Delete Organization']",
     "infoBoardOk": "[class='vs-c-modal--features-button']"
 
 }
