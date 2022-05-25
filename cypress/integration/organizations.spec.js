@@ -11,24 +11,23 @@ describe("create organization", () => {
         cy.get(loginModel.logInBtn).click();
 
         cy.get('[class=vs-u-text--uppercase]')
-        .should('be.visible')
-        .and('contain', 'My Organizations')
+            .should('be.visible')
+            .and('contain', 'My Organizations')
 
         cy.get('span.el-dropdown-link').should(($loggedInUser) => {
             expect($loggedInUser).to.contain('Maja Cveticanin')
-            })
-         //   cy.get('.vs-c-modal__body > .el-button > .el-icon-close').click()
+        })
     });
-    
+
     afterEach("logout user", () => {
         cy.get('span[class="vs-c-user-name"]').click()
         cy.get('li[data-cy="account-profile"]').click()
         cy.get('button[class="vs-c-btn vs-c-btn--link vs-c-btn--danger"]').click()
 
-         //assert that  we logged out
+        //assert that  we logged out
         cy.get('button[type="submit"]').should('be.visible')
         cy.get('h1').should('contain', 'Log in with your existing account')
-        
+
     })
 
     //positive
@@ -38,19 +37,18 @@ describe("create organization", () => {
         cy.get(organizations.inputNameOrg).type(dataOrg.org.orgName)
         cy.get(organizations.nextBtn).click();
         cy.get(organizations.createBtn).click();
-        
+
         cy.get('[class="vs-l-project__title-info vs-u-cursor--pointer"]')
-        .should('be.visible')
-  
+            .should('be.visible')
+
         cy.get('[class="vs-l-project__title-info vs-u-cursor--pointer"]').should(($orgItemHeader) => {
             expect($orgItemHeader).to.contain('Organization')
             expect($orgItemHeader).to.contain('test')
-            })
+        })
 
         cy.get('[class="vb-content"]').should(($orgItem) => {
             expect($orgItem).to.contain('test')
-            })
-
+        })
     })
 
     it("Edit org with new org name", () => {
@@ -58,12 +56,11 @@ describe("create organization", () => {
         cy.get(organizations.changeOrgName).clear()
         cy.get(organizations.changeOrgName).type(dataOrg.org.editOrgName)
         cy.get(organizations.checkEditedOrg).click();
-        
+
         cy.get('.vs-c-my-organizations-item-wrapper').should(($activeOrg) => {
             expect($activeOrg).to.contain(dataOrg.org.editOrgName)
-            })
+        })
     })
-
 
     it("Arhive org", () => {
         cy.get(organizations.arhiveOrgBtn).eq(0).click({ force: true });
@@ -73,11 +70,11 @@ describe("create organization", () => {
 
         cy.get("div[class='vs-c-my-organizations-item-wrapper vs-c-my-organizations-item-wrapper--archived']").should(($arhivedOrg) => {
             expect($arhivedOrg).to.contain("test")
-            })
+        })
     })
 
     it("Delete arhived org", () => {
-        cy.get(organizations.deleteArhivedOrg).eq(1).click({force: true})
+        cy.get(organizations.deleteArhivedOrg).eq(1).click({ force: true })
         cy.get(organizations.confirmPassDeleteOrg).type(dataOrg.user.pass)
         cy.get(organizations.saveConfirmBtn).click()
 
@@ -91,7 +88,7 @@ describe("create organization", () => {
         cy.get(organizations.deleteOrg).eq(5).click()
         cy.get(organizations.confirmPassDeleteOrg).type(dataOrg.user.pass)
         cy.get(organizations.saveConfirmBtn).click()
-        
+
         cy.get("div[class='vs-c-my-organizations-item-wrapper vs-c-my-organizations-item-wrapper--archived']").should('not.contain', 'Test')
     })
 
@@ -121,6 +118,7 @@ describe("create organization", () => {
         cy.get("button[type='submit']").should('be.disabled')
         cy.get("[class='el-form-item__error el-form-item-error--top']").should('contain', 'The name field is required')
     })
+
     it("Delete org with wrong pass", () => {
         cy.get(organizations.clickOrg).eq(0).click();
         cy.get(organizations.noticeOkClose).click()

@@ -1,17 +1,18 @@
 {
     "addNewBoardBtnDropdown": ".vs-c-list__btn > svg",
     "addBoardBtn": ".vs-c-tooltip-active-sprints .vs-c-list > li",
-    "checkOrgListBtn": "i[class='el-input__icon el-icon-caret-top is-reverse']",
-    "checkOrgFromList": "li[class='el-select-dropdown__item vs-c-select-dropdown__item vs-c-new-board-dropdown selected hover']",
+    "checkOrgListBtn": "i[class='el-input__icon el-icon-caret-top']",
+    "checkOrgFromList": "[class='el-select-dropdown__wrap el-scrollbar__wrap'] > ul > li",
     "inputBoardName": "input[type='text']",
     "nextBtn": "button[name='next_btn']",
     "checkScrumRb": "span[name='type_scrum']",
-    "activeBoard": "ul[class='vs-c-list vs-c-list--boards']",
+    "activeBoard": "[class='vs-c-list__btn']",
     "editBoard": "a[class='vs-c-site-logo']",
     "edinBrdName": "input[type='text']",
     "saveUpdate": "button[type='submit']",
     "deleteBoard": "button[class='vs-c-btn vs-c-btn--warning vs-c-btn--spaced']",
     "confirmDeleteBrd": "button[name='save-btn']", 
-    "archiveBoard": "[class='el-tooltip'] > svg "
+    "archiveBoard": "[class='el-tooltip'] > svg ",
+    "configBoardCode": "[data-vv-as='board code']"
     
 }
