@@ -1,6 +1,7 @@
 import loginModel from "../pages/loginModel.json"
 import boards from "../pages/boards.json"
 import dataBoard from "../fixtures/data.json"
+import logout from "../pages/logout.json"
 
 describe("create organization", () => {
 
@@ -15,25 +16,24 @@ describe("create organization", () => {
             .and('contain', 'My Organizations')
 
         cy.get('span.el-dropdown-link').should(($loggedInUser) => {
-            expect($loggedInUser).to.contain('Maja Cveticanin')
-        })
-        cy.get('.vs-c-modal__body > .el-button > .el-icon-close').click()
+            expect($loggedInUser).to.contain('Maja C')
+        })      
     });
 
     afterEach("logout user", () => {
-        cy.get("span[class='vs-c-user-name']").click()
-        cy.get('[data-cy="account-profile"]').click()
-        cy.get('button[class="vs-c-btn vs-c-btn--link vs-c-btn--danger"]').click()
+        cy.contains("Maja C").click()
+        cy.get(logout.profile).click()
+        cy.get(logout.logoutBtn).click()
 
          //assert that  we logged out
-        cy.get('button[type="submit"]').should('be.visible')
+        cy.get('button[type="submit"]').should('be.visible').and('contain', "Log In")
         cy.get('h1').should('contain', 'Log in with your existing account')
 
     })
 
     //positive
-    it("Add new board", () => {
-        cy.get(boards.addNewBoardBtnDropdown).eq(1).click({ force: true });
+    it.only("Add new board", () => {
+        cy.get(boards.addNewBoardBtnDropdown).click();
         cy.get(boards.addBoardBtn).eq(1).click();
         cy.get(boards.inputBoardName).eq(1).type(dataBoard.board.brdName)
         cy.get(boards.checkOrgListBtn).click();
@@ -73,7 +73,7 @@ describe("create organization", () => {
             .and('contain', 'Successfully updated the Board Basic Info.')
     })
 
-    it.only("Delete board", () => {
+    it("Delete board", () => {
         cy.get(boards.activeBoard).eq(3).click();
         cy.get(boards.editBoard).eq(8).click({ force: true });
         cy.get(boards.deleteBoard).click()

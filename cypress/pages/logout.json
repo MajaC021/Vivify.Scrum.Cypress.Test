@@ -1,0 +1,5 @@
+{
+    "username": ".el-dropdown-link",
+    "profile": "[data-cy='account-profile']",
+    "logoutBtn": "button[class='vs-c-btn vs-c-btn--link vs-c-btn--danger']" 
+}

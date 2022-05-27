@@ -1,6 +1,7 @@
 import loginModel from "../pages/loginModel.json"
 import organizations from "../pages/organizations.json"
 import dataOrg from "../fixtures/data.json"
+import logout from "../pages/logout.json"
 
 describe("create organization", () => {
 
@@ -15,19 +16,18 @@ describe("create organization", () => {
             .and('contain', 'My Organizations')
 
         cy.get('span.el-dropdown-link').should(($loggedInUser) => {
-            expect($loggedInUser).to.contain('Maja Cveticanin')
+            expect($loggedInUser).to.contain('Maja C')
         })
     });
 
     afterEach("logout user", () => {
-        cy.get('span[class="vs-c-user-name"]').click()
-        cy.get('li[data-cy="account-profile"]').click()
-        cy.get('button[class="vs-c-btn vs-c-btn--link vs-c-btn--danger"]').click()
+        cy.contains("Maja C").click()
+        cy.get(logout.profile).click()
+        cy.get(logout.logoutBtn).click()
 
         //assert that  we logged out
-        cy.get('button[type="submit"]').should('be.visible')
+        cy.get('button[type="submit"]').should('be.visible').and('contain', "Log In")
         cy.get('h1').should('contain', 'Log in with your existing account')
-
     })
 
     //positive
@@ -37,7 +37,7 @@ describe("create organization", () => {
         cy.get(organizations.inputNameOrg).type(dataOrg.org.orgName)
         cy.get(organizations.nextBtn).click();
         cy.get(organizations.createBtn).click();
-
+        cy.get(organizations.infoBoardOk).click();
         cy.get('[class="vs-l-project__title-info vs-u-cursor--pointer"]')
             .should('be.visible')
 
@@ -45,7 +45,6 @@ describe("create organization", () => {
             expect($orgItemHeader).to.contain('Organization')
             expect($orgItemHeader).to.contain('test')
         })
-
         cy.get('[class="vb-content"]').should(($orgItem) => {
             expect($orgItem).to.contain('test')
         })
@@ -63,7 +62,7 @@ describe("create organization", () => {
     })
 
     it("Arhive org", () => {
-        cy.get(organizations.arhiveOrgBtn).eq(0).click({ force: true });
+        cy.get(organizations.arhiveOrgBtn).click();
         cy.get(organizations.saveConfirmBtn).click();
 
         cy.get("div[class='vs-c-my-organizations-item-wrapper vs-c-my-organizations-item-wrapper--archived']").should('have.css', 'opacity', '0.4')
@@ -74,7 +73,7 @@ describe("create organization", () => {
     })
 
     it("Delete arhived org", () => {
-        cy.get(organizations.deleteArhivedOrg).eq(1).click({ force: true })
+        cy.get(organizations.deleteArhivedOrg).click()
         cy.get(organizations.confirmPassDeleteOrg).type(dataOrg.user.pass)
         cy.get(organizations.saveConfirmBtn).click()
 

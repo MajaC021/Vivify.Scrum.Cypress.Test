@@ -16,9 +16,9 @@
     "confirmPassDeleteOrg": "input[type='password']",
     "saveConfirmBtn": "button[name='save-btn']",
     "noticeOkClose": ".vs-c-modal--features-button > .vs-c-btn",
-    "arhiveOrgBtn" : "span[title='Archive Organization']",
+    "arhiveOrgBtn" : "span[class='vs-c-icon--archive']",
     "orgFromArhived": "[class='vs-c-my-organization organization-list-item']",
-    "deleteArhivedOrg": "span[title='Delete Organization']",
+    "deleteArhivedOrg": "span[class='vs-c-icon--remove']",
     "infoBoardOk": "[class='vs-c-modal--features-button']"
 
 }
