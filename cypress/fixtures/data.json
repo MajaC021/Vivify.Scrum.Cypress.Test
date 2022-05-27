@@ -14,5 +14,9 @@
     "board": {
         "brdName": "testB",
         "editBrdName": "testB123"
+    },
+    "task": {
+        "tskName": "testB",
+        "editTskName": "testB123"
     }
 }
