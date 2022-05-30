@@ -1,8 +1,9 @@
 import loginModel from "../pages/loginModel.json"
-import boards from "../pages/boards.json"
 import dataBoard from "../fixtures/data.json"
 import logout from "../pages/logout.json"
+import Boards from '../support/classes/boards';
 
+const boards = new Boards();
 describe("create organization", () => {
 
     beforeEach("User needs to be login", () => {
@@ -32,85 +33,40 @@ describe("create organization", () => {
     })
 
     //positive
-    it.only("Add new board", () => {
-        cy.get(boards.addNewBoardBtnDropdown).click();
-        cy.get(boards.addBoardBtn).eq(1).click();
-        cy.get(boards.inputBoardName).eq(1).type(dataBoard.board.brdName)
-        cy.get(boards.checkOrgListBtn).click();
-        cy.get(boards.checkOrgFromList).eq(1).click();
-        cy.get(boards.nextBtn).click();
-        cy.get(boards.checkScrumRb).click();
-        cy.get(boards.nextBtn).click();
-        cy.get(boards.nextBtn).click();
-        cy.get(boards.nextBtn).click();
-        cy.get(boards.nextBtn).click();
-
-        cy.get('li[class="vs-c-list__item has-caret"]').should(($loggedInUser) => {
-            expect($loggedInUser).to.contain(dataBoard.board.brdName)
-        })
+    it("Add new board", () => {
+        boards.createBoard("Test new board")
+        boards.assertBoardName("Test new board")  
     })
 
     it("Edit board code", () => {
-        cy.get(boards.activeBoard).eq(3).click();
-        cy.get(boards.editBoard).eq(8).click();
-        cy.get(boards.configBoardCode).clear();
-        cy.get(boards.configBoardCode).type("bb{enter}");
-
-        cy.get('.el-message__group > p')
-            .should('be.visible')
-            .and('contain', 'Successfully updated the Board Basic Info.')
+        boards.editBoardCode("BBBB")
+        boards.assertBoardCodeEdited("BBBB")    
     })
 
     it("Edit board name", () => {
-        cy.get(boards.activeBoard).eq(3).click();
-        cy.get(boards.editBoard).eq(8).click();
-        cy.get(boards.edinBrdName).eq(0).clear()
-        cy.get(boards.edinBrdName).eq(0).type(dataBoard.board.editBrdName);
-        cy.get(boards.saveUpdate).eq(0).click()
-
-        cy.get('.el-message__group > p')
-            .should('be.visible')
-            .and('contain', 'Successfully updated the Board Basic Info.')
+        boards.editBoardName("name edited")
+        boards.assertBoardNameEdited("name edited")
     })
 
     it("Delete board", () => {
-        cy.get(boards.activeBoard).eq(3).click();
-        cy.get(boards.editBoard).eq(8).click({ force: true });
-        cy.get(boards.deleteBoard).click()
-        cy.get(boards.confirmDeleteBrd).click()
-
-        cy.get('[class="vs-c-organization-boards"]').should(($board) => {
-            expect($board).to.contain("testB")
-        })
+        boards.deleteBoard("name edited")
+        boards.assertDeleteBoard("name edited")
     })
 
     //negative
     it("Edit board code with 5 characters", () => {
-        cy.get(boards.activeBoard).eq(3).click();
-        cy.get(boards.editBoard).eq(8).click();
-        cy.get(boards.configBoardCode).type("board code change{enter}");
-
-        cy.get('.el-form-item__error el-form-item-error--top').should(($editBoard) => {
-            expect($editBoard).to.contain("The board code field may not be greater than 4 characters")
-        })
+        boards.editBoardCodeWith5Char("board")
+        boards.assertBoardCodeMoreThanLimitChar();
+      
     })
 
-    it("Edit board without name", () => {
-        cy.get(boards.activeBoard).eq(3).click();
-        cy.get(boards.editBoard).eq(8).click();
-        cy.get(boards.edinBrdName).eq(0).clear()
-
-        cy.get("button[type='submit']").should('be.disabled')
-        cy.get("span[class='el-form-item__error el-form-item-error--top']").should('contain', "The board title field is required")
+    it("Edit board without name", () => {  
+        boards.editBoardNameWithoutName();
+        boards.assertBoardWithoutName();      
     })
 
     it("Edit board without code", () => {
-        cy.get(boards.activeBoard).eq(3).click();
-        cy.get(boards.editBoard).eq(8).click();
-        cy.get(boards.configBoardCode).clear();
-
-        cy.get("button[type='submit']").should('be.disabled')
-        cy.get("span[class='el-form-item__error el-form-item-error--top']")
-            .should('contain', 'The board code field is required')
+        boards.editBoardWithoutCode();
+        boards.assertBoardWithoutCode();
     })
 })

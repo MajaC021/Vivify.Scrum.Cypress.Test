@@ -20,15 +20,15 @@ describe("create organization", () => {
         })
     });
 
-    // afterEach("logout user", () => {
-    //     cy.contains("Maja C").click()
-    //     cy.get(logout.profile).click()
-    //     cy.get(logout.logoutBtn).click()
+    afterEach("logout user", () => {
+        cy.contains("Maja C").click()
+        cy.get(logout.profile).click()
+        cy.get(logout.logoutBtn).click()
 
-    //     //assert that  we logged out
-    //     cy.get('button[type="submit"]').should('be.visible').and('contain', "Log In")
-    //     cy.get('h1').should('contain', 'Log in with your existing account')
-    // })
+        //assert that  we logged out
+        cy.get('button[type="submit"]').should('be.visible').and('contain', "Log In")
+        cy.get('h1').should('contain', 'Log in with your existing account')
+    })
 
     //positive
     it("Create new task", () => {
@@ -53,8 +53,9 @@ describe("create organization", () => {
 
         cy.get('.vs-c-col.not-sortable').should('not.contain', 'Test')
     })
+
     //negative
-    it.only("Edit task without name", () => {
+    it("Edit task without name", () => {
         cy.get(tasks.openBoard).eq(1).click()
         cy.get(tasks.editTaskName).eq(1).click({force: true})
         cy.get(tasks.addNameTask).clear()
