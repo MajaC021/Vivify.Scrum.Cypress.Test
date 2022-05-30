@@ -1,0 +1,26 @@
+export default {
+
+    addNewOrgBtnDropdown: ".vs-c-list__btn > svg",
+    addOrganizationBtn:".vs-c-tooltip-active-sprints .vs-c-list > li",
+    inputNameOrg: "input[type='text']",
+    nextBtn: "button[name='next_btn']",
+    cancelBtn: "button[name='prev_btn']",
+    closeBtn: "button[name='close-new-board-modal-btn']",
+    createBtn: "button[name='next_btn']", 
+    previousBtn: "button[name='prev_btn']",
+    clickOrg: ".vs-c-list__btn",
+    clickConfig: "[class='vs-l-project__menu'] > ul > li",
+    deleteOrg: "button > span",
+    editOrg: "span[title='Edit Organization']",
+    changeOrgName:"input[name='change-organization-name']" ,
+    checkEditedOrg: "i[class='el-icon-check']",
+    confirmPassDeleteOrg: "input[type='password']",
+    saveConfirmBtn: "button[name='save-btn']",
+    noticeOkClose: ".vs-c-modal--features-button > .vs-c-btn",
+    arhiveOrgBtn : "span[class='vs-c-icon--archive']",
+    orgFromArhived: "[class='vs-c-my-organization organization-list-item']",
+    deleteArhivedOrg: ".vs-c-icon--remove",
+    infoBoardOk: "[class='vs-c-modal--features-button']",
+    configBtnSubmit: "button[type='submit']",
+    listOrg: ".vs-l-my-organizations__content"
+}

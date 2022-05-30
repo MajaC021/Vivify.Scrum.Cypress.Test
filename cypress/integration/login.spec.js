@@ -48,7 +48,6 @@ describe("Login user", () => {
 
     //positive
     it("Login with valid credentials", () => {
-
         login.login(dataUser.user.email, dataUser.user.pass)
         login.assertLogin();
     })
