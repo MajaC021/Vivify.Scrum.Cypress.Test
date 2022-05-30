@@ -1,35 +1,22 @@
-import loginModel from "../pages/loginModel.json"
-import dataBoard from "../fixtures/data.json"
-import logout from "../pages/logout.json"
+import Logout from '../support/classes/logout';
+import Login from '../support/classes/login';
 import Boards from '../support/classes/boards';
+import dataBrd from "../fixtures/data.json"
 
 const boards = new Boards();
+const logout = new Logout();
+const login = new Login();
+
 describe("create organization", () => {
 
     beforeEach("User needs to be login", () => {
-        cy.visit("/login")
-        cy.get(loginModel.email).type(dataBoard.user.email)
-        cy.get(loginModel.password).type(dataBoard.user.pass)
-        cy.get(loginModel.logInBtn).click();
-
-        cy.get('[class=vs-u-text--uppercase]')
-            .should('be.visible')
-            .and('contain', 'My Organizations')
-
-        cy.get('span.el-dropdown-link').should(($loggedInUser) => {
-            expect($loggedInUser).to.contain('Maja C')
-        })      
+        login.login(dataBrd.user.email, dataBrd.user.pass)
+        login.assertLogin();
     });
 
     afterEach("logout user", () => {
-        cy.contains("Maja C").click()
-        cy.get(logout.profile).click()
-        cy.get(logout.logoutBtn).click()
-
-         //assert that  we logged out
-        cy.get('button[type="submit"]').should('be.visible').and('contain', "Log In")
-        cy.get('h1').should('contain', 'Log in with your existing account')
-
+        logout.logout("Maja C");
+        logout.assertLogout();
     })
 
     //positive
