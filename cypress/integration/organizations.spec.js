@@ -41,8 +41,8 @@ describe("organization module tests", () => {
     })
 
     it("Delete org", () => {
-       organizations.deleteOrg(dataOrg.user.pass)
-       organizations.assertDeletedOrg();  
+        organizations.deleteOrg(dataOrg.user.pass)
+        organizations.assertDeletedOrg();
     })
 
     //negative
@@ -53,7 +53,7 @@ describe("organization module tests", () => {
 
     it("Add new org without name", () => {
         organizations.addOrgWithoutName()
-        organizations.assertAddedOrgWithoutName()       
+        organizations.assertAddedOrgWithoutName()
     })
 
     it("Edit org in config without name", () => {

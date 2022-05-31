@@ -3,7 +3,7 @@ import Login from '../support/classes/login';
 
 const login = new Login();
 
-describe("Login user", () => {
+describe("Login module test", () => {
 
     //negative
     it("Login with invalid email", () => {

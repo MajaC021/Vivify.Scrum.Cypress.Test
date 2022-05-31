@@ -7,7 +7,7 @@ const boards = new Boards();
 const logout = new Logout();
 const login = new Login();
 
-describe("create organization", () => {
+describe("board module test", () => {
 
     beforeEach("User needs to be login", () => {
         login.login(dataBrd.user.email, dataBrd.user.pass)
@@ -22,12 +22,12 @@ describe("create organization", () => {
     //positive
     it("Add new board", () => {
         boards.createBoard("Test new board")
-        boards.assertBoardName("Test new board")  
+        boards.assertBoardName("Test new board")
     })
 
     it("Edit board code", () => {
         boards.editBoardCode("BBBB")
-        boards.assertBoardCodeEdited("BBBB")    
+        boards.assertBoardCodeEdited("BBBB")
     })
 
     it("Edit board name", () => {
@@ -44,12 +44,11 @@ describe("create organization", () => {
     it("Edit board code with 5 characters", () => {
         boards.editBoardCodeWith5Char("board")
         boards.assertBoardCodeMoreThanLimitChar();
-      
     })
 
-    it("Edit board without name", () => {  
+    it("Edit board without name", () => {
         boards.editBoardNameWithoutName();
-        boards.assertBoardWithoutName();      
+        boards.assertBoardWithoutName();
     })
 
     it("Edit board without code", () => {

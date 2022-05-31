@@ -7,5 +7,14 @@ export default {
     deleteTask: "li[name='delete-option']",
     saveConfirmBtn: "button[name='save-btn']",
     editTaskName: "[class='vs-c-task-card__not-selectable vs-task-card__title-edit']",
-    infoBoardOk: "[class='vs-c-modal--features-button']"
+    infoBoardOk: "[class='vs-c-modal--features-button']",
+    dropdownItems: ".vs-c-task-dropdown__item",
+    itemsFromDropdown: "li[class='el-dropdown-menu__item']",
+    selectBoardDropdown: ".el-input__inner",
+    selectBoardItem: ".vs-c-text",
+    selectSprintDropdown: "a.vs-u-display--flex",
+    selectSprintItem: ".vs-c-dropdown.active > li > span",
+    selectBacklogColumn: "li.el-dropdown-menu__item",
+    headerButtons: "button[class='vs-c-btn vs-c-btn--link el-tooltip']",
+    uploadFile: ".el-upload-dragger"
 }

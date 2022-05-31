@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/MajaC021/Vivify.Scrum.Cypress.Test#readme",
   "devDependencies": {
-    "cypress": "^9.6.1"
+    "cypress": "^9.6.1",
+    "cypress-file-upload": "^5.0.8"
   }
 }

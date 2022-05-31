@@ -14,10 +14,10 @@ describe("tasks module tests", () => {
         login.assertLogin();
     });
 
-    // afterEach("logout user", () => {
-    //     logout.logout("Maja C");
-    //     logout.assertLogout();
-    // })
+    afterEach("logout user", () => {
+        logout.logout("Maja C");
+        logout.assertLogout();
+    })
 
     //positive
     it("Create new task", () => {
@@ -26,13 +26,21 @@ describe("tasks module tests", () => {
     })
 
     it("Delete the task", () => {
-        tasks.deleteTask() 
+        tasks.deleteTask()
         tasks.assertDeletedTask()
+    })
+    it("Open task in new tab", () => {
+        tasks.moveTaskToOtherBoard()
+        tasks.assertMoveTaskToOtherBoard()
+    })
+    it.only("upload file in task", () => {
+        tasks.uploadFile("../images/Screenshot_1.png")
+        tasks.assertUploadedFiles("Screenshot_1.png")
     })
 
     //negative
     it("Edit task without name", () => {
-      tasks.editTaskNameWithoutName()
-      tasks.assertEditTaskNameWithoutName()
+        tasks.editTaskNameWithoutName()
+        tasks.assertEditTaskNameWithoutName()
     })
 })
