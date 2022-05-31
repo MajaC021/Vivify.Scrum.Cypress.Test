@@ -7,17 +7,17 @@ const login = new Login();
 const logout = new Logout();
 const organizations = new Organizations();
 
-describe("create organization", () => {
+describe("organization module tests", () => {
 
     beforeEach("User needs to be login", () => {
         login.login(dataOrg.user.email, dataOrg.user.pass)
         login.assertLogin();
     });
 
-    // afterEach("logout user", () => {
-    //     logout.logout("Maja C");
-    //     logout.assertLogout();
-    // })
+    afterEach("logout user", () => {
+        logout.logout("Maja C");
+        logout.assertLogout();
+    })
 
     //positive
     it("Add new org", () => {
@@ -61,7 +61,7 @@ describe("create organization", () => {
         organizations.assertConfigOrgNameWithoutName()
     })
 
-    it.only("Delete org with wrong pass", () => {
+    it("Delete org with wrong pass", () => {
         organizations.deleteOrgWithWrongPass(dataOrg.user.invalidPass)
         organizations.assertDeleteOrgWithoutPass()
     })
