@@ -15,8 +15,17 @@ describe("organization module tests", () => {
     });
 
     afterEach("logout user", () => {
-        logout.logout("Maja C");
-        logout.assertLogout();
+        cy.intercept({
+            method: "POST",
+            url: "api/v2/logout",
+          }).as('logout')
+          logout.logout("Maja Cvet");
+          logout.assertLogout();
+          cy.wait('@logout').then((interceptObj) => {
+            console.log(interceptObj)
+            expect(interceptObj.response.statusCode).eq(201)
+            expect(interceptObj.response.body.message).eq("Successfully logged out")
+          })
     })
 
     //positive
