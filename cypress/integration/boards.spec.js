@@ -19,7 +19,6 @@ describe("board module test", () => {
         login.login(dataBrd.user.email, dataBrd.user.pass)
         login.assertLogin();
         cy.wait('@login').then((interceptObj) => {
-            console.log("LOGIN", interceptObj)
             user = interceptObj.response.body.user.full_name;
             expect(interceptObj.response.statusCode).eq(200)
             expect(interceptObj.response.body.user.email).eq(dataBrd.user.email)

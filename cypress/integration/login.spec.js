@@ -47,13 +47,30 @@ describe("Login module test", () => {
     })
 
     //positive
-    it("Login with valid credentials", () => {
+    it.only("Login with valid credentials", () => {
+        cy.intercept({
+            method: "POST",
+            url: "api/v2/login",
+        }).as('login')
         login.login(dataUser.user.email, dataUser.user.pass)
         login.assertLogin();
+        cy.wait('@login').then((interceptObj) => {
+           console.log(interceptObj)
+            expect(interceptObj.response.statusCode).eq(200)
+            expect(interceptObj.response.body.user.email).eq(dataUser.user.email)
+        })
     })
 
     it("Login user, forgot pass", () => {
+        cy.intercept({
+            method: "POST",
+            url: "api/v2/password-reminder",
+        }).as('login')
         login.loginUserForgotPass(dataUser.user.email)
         login.assertLoginForgotPassword()
+        cy.wait('@login').then((interceptObj) => {
+            expect(interceptObj.response.statusCode).eq(200)
+            expect(interceptObj.response.body).eq('success')
+        })
     })
 })
