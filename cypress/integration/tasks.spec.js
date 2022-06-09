@@ -10,8 +10,17 @@ const tasks = new Tasks();
 describe("tasks module tests", () => {
 
     beforeEach("User needs to be login", () => {
-        login.login(dataTask.user.email, dataTask.user.pass)
+        cy.intercept({
+            method: "POST",
+            url: "api/v2/login",
+        }).as('login')
+        login.login(dataOrg.user.email, dataOrg.user.pass)
         login.assertLogin();
+        cy.wait('@login').then((interceptObj) => {
+            user = interceptObj.response.body.user.full_name;
+            expect(interceptObj.response.statusCode).eq(200)
+            expect(interceptObj.response.body.user.email).eq(dataOrg.user.email)
+        })
     });
 
     afterEach("logout user", () => {

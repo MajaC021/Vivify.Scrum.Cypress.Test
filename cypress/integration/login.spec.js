@@ -54,8 +54,7 @@ describe("Login module test", () => {
         }).as('login')
         login.login(dataUser.user.email, dataUser.user.pass)
         login.assertLogin();
-        cy.wait('@login').then((interceptObj) => {
-           console.log(interceptObj)
+        cy.wait('@login').then((interceptObj) => {       
             expect(interceptObj.response.statusCode).eq(200)
             expect(interceptObj.response.body.user.email).eq(dataUser.user.email)
         })
