@@ -51,7 +51,7 @@ describe("tasks module tests", () => {
         tasks.moveTaskToOtherBoard()
         tasks.assertMoveTaskToOtherBoard()
     })
-    it.only("upload file in task", () => {
+    it("upload file in task", () => {
         tasks.uploadFile("../images/Screenshot_1.png")
         tasks.assertUploadedFiles("Screenshot_1.png")
     })
