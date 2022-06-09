@@ -87,7 +87,6 @@ describe("board module test", () => {
         cy.visit(`/boards/${boardId}/settings`)
         boards.deleteBoard()
         cy.wait('@deleteBoard').then((interceptObj) => {
-            console.log(interceptObj)
             expect(interceptObj.response.statusCode).eq(200)
             expect(interceptObj.response.body.id).eq(boardId)
         })

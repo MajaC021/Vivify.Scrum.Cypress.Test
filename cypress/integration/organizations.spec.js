@@ -62,7 +62,6 @@ describe("organization module tests", () => {
         organizations.editOrg(dataOrg.org.editOrgName)
         organizations.assertEditOrg(dataOrg.org.editOrgName)
         cy.wait('@createOrgRequest').then((interceptObj) => {
-            console.log("OBJ", interceptObj)
             expect(interceptObj.response.statusCode).eq(200)
             expect(interceptObj.response.body.name).eq(dataOrg.org.editOrgName)
         })
@@ -83,7 +82,7 @@ describe("organization module tests", () => {
             expect(interceptObj.response.body.status).eq("archived")
         })
     })
-    
+
     it("Delete org", () => {
         cy.visit(`/organizations/${orgId}/settings`)
         cy.intercept({
@@ -93,12 +92,11 @@ describe("organization module tests", () => {
         organizations.deleteOrg(dataOrg.user.pass)
         organizations.assertDeletedOrg();
         cy.wait('@createOrgRequest').then((interceptObj) => {
-            console.log("OBJ", interceptObj)
-         expect(interceptObj.response.body.id).eq(orgId)
-         expect(interceptObj.response.statusCode).eq(201)
+            expect(interceptObj.response.body.id).eq(orgId)
+            expect(interceptObj.response.statusCode).eq(201)
         })
     })
-    
+
     //negative
     it("Edit org without name", () => {
         organizations.editOrgWithoutName()
@@ -120,5 +118,5 @@ describe("organization module tests", () => {
         organizations.assertDeleteOrgWithoutPass()
     })
 
-   
+
 })

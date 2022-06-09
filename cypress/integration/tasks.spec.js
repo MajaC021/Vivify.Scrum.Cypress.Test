@@ -27,18 +27,18 @@ describe("tasks module tests", () => {
         })
     });
 
-    // afterEach("logout user", () => {
-    //     cy.intercept({
-    //         method: "POST",
-    //         url: "api/v2/logout",
-    //     }).as('logout')
-    //     logout.logout("Maja Cvet");
-    //     logout.assertLogout();
-    //     cy.wait('@logout').then((interceptObj) => {
-    //         expect(interceptObj.response.statusCode).eq(201)
-    //         expect(interceptObj.response.body.message).eq("Successfully logged out")
-    //     })
-    // })
+    afterEach("logout user", () => {
+        cy.intercept({
+            method: "POST",
+            url: "api/v2/logout",
+        }).as('logout')
+        logout.logout("Maja Cvet");
+        logout.assertLogout();
+        cy.wait('@logout').then((interceptObj) => {
+            expect(interceptObj.response.statusCode).eq(201)
+            expect(interceptObj.response.body.message).eq("Successfully logged out")
+        })
+    })
 
     //positive
     it("Create new task", () => {
@@ -49,7 +49,7 @@ describe("tasks module tests", () => {
         }).as('createTaskRequest')
         tasks.createTask(dataTask.task.tskName)
         tasks.assertCreatedTask(dataTask.task.tskName)
-        cy.wait('@createTaskRequest').then((interceptObj) => {           
+        cy.wait('@createTaskRequest').then((interceptObj) => {
             orgId = interceptObj.response.body.id
             code = interceptObj.response.body.code;
             boardId = interceptObj.response.body.board.id
@@ -59,10 +59,18 @@ describe("tasks module tests", () => {
     })
 
     it("Open task in new tab", () => {
+        cy.visit(`/boards/${boardId}/${code}`)
+        cy.intercept({
+            method: "PUT",
+            url: "api/v2/tasks/move-tasks-to-another-board",
+        }).as('moveTaskRequest')
         tasks.moveTaskToOtherBoard()
         tasks.assertMoveTaskToOtherBoard()
+        cy.wait('@moveTaskRequest').then((interceptObj) => {
+            expect(interceptObj.response.url).to.match(/\/move-tasks-to-another-board/)
+        })
     })
-    
+
     it("upload file in task", () => {
         tasks.uploadFile("../images/Screenshot_1.png")
         tasks.assertUploadedFiles("Screenshot_1.png")
@@ -77,7 +85,6 @@ describe("tasks module tests", () => {
         tasks.deleteTask()
         tasks.assertDeletedTask()
         cy.wait('@deleteTaskRequest').then((interceptObj) => {
-            console.log(interceptObj)
             expect(interceptObj.response.statusCode).eq(200)
             expect(interceptObj.response.body.name).eq(dataTask.task.tskName)
         })
