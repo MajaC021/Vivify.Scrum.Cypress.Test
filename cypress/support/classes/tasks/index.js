@@ -3,7 +3,6 @@ import TaskElements from '../../elements/task-elements';
 class Tasks {
 
     createTask(taskName) {
-        cy.get(TaskElements.openBoard).eq(0).click()
         cy.get(TaskElements.addNewTask).eq(1).click({ force: true })
         cy.get(TaskElements.addNameTask).type(`${taskName}{enter}`)
     }
@@ -16,8 +15,6 @@ class Tasks {
         })
     }
     deleteTask() {
-        cy.get(TaskElements.openBoard).eq(0).click()
-        cy.get(TaskElements.listTask).eq(1).click()
         cy.get(TaskElements.dropdownTskOptions).eq(3).click()
         cy.get(TaskElements.deleteTask).click()
         cy.get(TaskElements.saveConfirmBtn).click()
@@ -35,8 +32,8 @@ class Tasks {
         cy.get('button[name="update_item_title"]').should('not.have.css', 'display', 'none')
     }
     moveTaskToOtherBoard() {
-        cy.get(TaskElements.openBoard).eq(0).click()
-        cy.get(TaskElements.listTask).eq(1).click()
+        // cy.get(TaskElements.openBoard).eq(0).click()
+        // cy.get(TaskElements.listTask).eq(1).click()
         cy.get(TaskElements.dropdownTskOptions).eq(3).click()
         cy.get(TaskElements.itemsFromDropdown).contains("Move To Another Board").click()
         cy.get(TaskElements.selectBoardDropdown).click()
