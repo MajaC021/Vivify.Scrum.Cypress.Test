@@ -1,6 +1,6 @@
 import OrgElements from '../../elements/org-elements';
 
-class Organizations {
+class Organizations {        
 
     addNewOrg(orgName) {
         cy.get(OrgElements.addNewOrgBtnDropdown).eq(1).click({ force: true });
@@ -23,28 +23,27 @@ class Organizations {
         })
     }
     editOrg(editOrgName) {
-        cy.get(OrgElements.editOrg).eq(0).click();
+        cy.get(OrgElements.nameOrg).click();
         cy.get(OrgElements.changeOrgName).clear()
         cy.get(OrgElements.changeOrgName).type(editOrgName)
-        cy.get(OrgElements.checkEditedOrg).click();
+        cy.get(OrgElements.configBtnSubmit).contains('Update').click();
     }
     assertEditOrg(editOrgName) {
-        cy.get('.vs-c-my-organizations-item-wrapper').should(($activeOrg) => {
+        cy.get('.vs-c-list').should(($activeOrg) => {
             expect($activeOrg).to.contain(editOrgName)
         })
     }
     archiveOrg() {
-        cy.get(OrgElements.arhiveOrgBtn).eq(1).click({ force: true });
+        cy.get(OrgElements.arhiveOrgBtn).contains('Archive').click();
         cy.get(OrgElements.saveConfirmBtn).click();
     }
-    assertArchiveOrg(orgName) {
-        cy.get('.vs-c-my-organizations-item-wrapper--archived').should('have.css', 'opacity', '0.4')
-        cy.get('.vs-c-my-organizations-item-wrapper--archived').should(($arhivedOrg) => {
-            expect($arhivedOrg).to.contain(orgName)
+    assertArchiveOrg() {
+        cy.get('p').should(($arhivedOrg) => {
+            expect($arhivedOrg).to.contain('Organization is currently archived. You can either reopen it or permanently delete it.')
         })
     }
     deleteArchiveOrg(pass) {
-        cy.get(OrgElements.deleteArhivedOrg).eq(1).click({ force: true })
+        cy.get(OrgElements.deleteOrgBtn).contains("Delete Organization").click();
         cy.get(OrgElements.confirmPassDeleteOrg).type(pass)
         cy.get(OrgElements.saveConfirmBtn).click()
     }
@@ -52,9 +51,6 @@ class Organizations {
         cy.get('.vs-c-my-organizations-item-wrapper.vs-c-my-organizations-item-wrapper--archived').should('not.contain', 'Test')
     }
     deleteOrg(pass) {
-        cy.get(OrgElements.clickOrg).eq(2).click();
-        cy.get(OrgElements.infoBoardOk).click()
-        cy.get(OrgElements.clickConfig).eq(7).click()
         cy.get(OrgElements.deleteOrg).eq(5).click()
         cy.get(OrgElements.confirmPassDeleteOrg).type(pass)
         cy.get(OrgElements.saveConfirmBtn).click()

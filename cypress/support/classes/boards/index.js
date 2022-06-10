@@ -2,13 +2,12 @@ import BoardElements from '../../elements/board-elements';
 
 
 class Boards {
-
     createBoard(boardName) {
         cy.get(BoardElements.addNewBoardBtnDropdown).click()
         cy.get(BoardElements.addBoardBtn).eq(1).click()
         cy.get(BoardElements.inputBoardName).eq(1).type(`${boardName}{enter}`)
         cy.get(BoardElements.checkOrgListBtn).click();
-        cy.get(BoardElements.checkOrgFromList).eq(1).click();
+        cy.get(BoardElements.checkOrgFromList).eq(0).click();
         cy.get(BoardElements.nextBtn).click();
         cy.get(BoardElements.checkScrumRb).click();
         cy.get(BoardElements.nextBtn).click();
@@ -24,8 +23,7 @@ class Boards {
     }
 
     editBoardCode(editBoardCode) {
-        cy.get(BoardElements.activeBoard).eq(3).click();
-        cy.get(BoardElements.editBoard).eq(8).click();
+        cy.get(BoardElements.editBoardCode).click();
         cy.get(BoardElements.configBoardCode).clear();
         cy.get(BoardElements.configBoardCode).type(`${editBoardCode}{enter}`);
     }
@@ -40,8 +38,6 @@ class Boards {
     }
 
     editBoardName(editBoardName) {
-        cy.get(BoardElements.activeBoard).eq(3).click();
-        cy.get(BoardElements.editBoard).eq(8).click();
         cy.get(BoardElements.edinBrdName).eq(0).clear()
         cy.get(BoardElements.edinBrdName).eq(0).type(`${editBoardName}{enter}`);
         cy.get(BoardElements.saveUpdate).eq(0).click()
@@ -51,25 +47,20 @@ class Boards {
         cy.get('.el-message__group > p')
             .should('be.visible')
             .and('contain', 'Successfully updated the Board Basic Info.')
-        cy.get(".vs-c-img--avatar vs-c-img--board-avatar").then(($div) => {
-            expect($div).to.have.text(`${editBoardName}`)
-        })
     }
 
-    deleteBoard(boardName) {
-        cy.get(BoardElements.boardFromList).contains(boardName).click()
-        cy.get(BoardElements.editBoard).eq(8).click({ force: true });
+    deleteBoard() {
         cy.get(BoardElements.deleteBoard).click()
         cy.get(BoardElements.confirmDeleteBrd).click()
+        cy.get(BoardElements.infoBoardClose).click()
     }
 
-    assertDeleteBoard(boardName) {
-        cy.contains(`${boardName}`).should('not.exist')
+    assertDeleteBoard(boardId) {
+        cy.contains(`${boardId}`).should('not.exist')
     }
 
     editBoardCodeWith5Char(editBoardCode) {
-        cy.get(BoardElements.activeBoard).eq(3).click();
-        cy.get(BoardElements.editBoard).eq(8).click();
+        cy.get(BoardElements.editBoardCode).click();
         cy.get(BoardElements.configBoardCode).clear();
         cy.get(BoardElements.configBoardCode).type(`${editBoardCode}{enter}`);
     }
@@ -79,23 +70,24 @@ class Boards {
             expect($editBoard).to.contain("The board code field may not be greater than 4 characters")
         })
     }
+
     editBoardNameWithoutName() {
-        cy.get(BoardElements.activeBoard).eq(3).click();
-        cy.get(BoardElements.editBoard).eq(8).click();
         cy.get(BoardElements.edinBrdName).eq(0).clear()
     }
+
     assertBoardWithoutName() {
         cy.get(BoardElements.saveUpdate).should('be.disabled')
         cy.get(".el-form-item__error.el-form-item-error--top").should('contain', "The board title field is required")
     }
-    editBoardWithoutCode(){
-        cy.get(BoardElements.activeBoard).eq(3).click();
-        cy.get(BoardElements.editBoard).eq(8).click();
+
+    editBoardWithoutCode() {
+        cy.get(BoardElements.editBoardCode).click();
         cy.get(BoardElements.configBoardCode).clear();
     }
-    assertBoardWithoutCode(){
+
+    assertBoardWithoutCode() {
         cy.get(BoardElements.saveUpdate).should('be.disabled')
-        cy.get(".class='el-form-item__error.el-form-item-error--top']")
+        cy.get('.el-form-item__error')
             .should('contain', 'The board code field is required')
     }
 }

@@ -15,7 +15,7 @@ class Login {
             .and('contain', 'My Organizations')
 
         cy.get('span.el-dropdown-link').should(($loggedInUser) => {
-            expect($loggedInUser).to.contain('Maja C')
+            expect($loggedInUser).to.contain('Maja Cvet')
         })
     }
     loginUserForgotPass(email) {

@@ -8,6 +8,7 @@ export default {
     checkScrumRb: "span[name='type_scrum']",
     activeBoard: "[class='vs-c-list__btn']",
     editBoard: "a[class='vs-c-site-logo']",
+    editBoardCode: "input[data-vv-as='board code']",
     edinBrdName: "input[type='text']",
     saveUpdate: "button[type='submit']",
     deleteBoard: "button[class='vs-c-btn vs-c-btn--warning vs-c-btn--spaced']",

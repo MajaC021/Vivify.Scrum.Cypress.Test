@@ -12,15 +12,17 @@ export default {
     clickConfig: "[class='vs-l-project__menu'] > ul > li",
     deleteOrg: "button > span",
     editOrg: "span[title='Edit Organization']",
-    changeOrgName:"input[name='change-organization-name']" ,
+    changeOrgName:"input[data-vv-as='name']" ,
     checkEditedOrg: "i[class='el-icon-check']",
     confirmPassDeleteOrg: "input[type='password']",
     saveConfirmBtn: "button[name='save-btn']",
     noticeOkClose: ".vs-c-modal--features-button > .vs-c-btn",
-    arhiveOrgBtn : "span[class='vs-c-icon--archive']",
+    arhiveOrgBtn : "button[class='vs-c-btn vs-c-btn--success vs-c-btn--spaced']",
     orgFromArhived: "[class='vs-c-my-organization organization-list-item']",
     deleteArhivedOrg: ".vs-c-icon--remove",
     infoBoardOk: "[class='vs-c-modal--features-button']",
     configBtnSubmit: "button[type='submit']",
-    listOrg: ".vs-l-my-organizations__content"
+    listOrg: ".vs-l-my-organizations__content",
+    nameOrg: "input[data-vv-as='name']",
+    deleteOrgBtn: "button[class='vs-c-btn vs-c-btn--warning vs-c-btn--spaced vs-u-gap--left']"
 }
