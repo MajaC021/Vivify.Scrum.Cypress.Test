@@ -4,7 +4,7 @@
         "invalidPass": "123456",
         "invalidEmail": "ttt.com",
         "nonExistEmail": "nnn@ggg.com",
-        "email": "test12345@gmail.com",
+        "email": "test123456@gmail.com",
         "pass": "test12345"
     },
     "org": {

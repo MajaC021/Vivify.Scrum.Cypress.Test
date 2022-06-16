@@ -47,9 +47,6 @@ class Organizations {
         cy.get(OrgElements.confirmPassDeleteOrg).type(pass)
         cy.get(OrgElements.saveConfirmBtn).click()
     }
-    assertDeleteArchiveOrg() {
-        cy.get('.vs-c-my-organizations-item-wrapper.vs-c-my-organizations-item-wrapper--archived').should('not.contain', 'Test')
-    }
     deleteOrg(pass) {
         cy.get(OrgElements.deleteOrg).eq(5).click()
         cy.get(OrgElements.confirmPassDeleteOrg).type(pass)
@@ -60,7 +57,7 @@ class Organizations {
     }
     editOrgWithoutName() {
         cy.get(OrgElements.editOrg).eq(1).click();
-        cy.get(OrgElements.changeOrgName).clear()
+        cy.get(OrgElements.editOrgName).clear()
         cy.get(OrgElements.checkEditedOrg).click();
     }
     assertEditedOrgWithoutName() {

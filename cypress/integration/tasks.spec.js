@@ -1,11 +1,7 @@
 import dataTask from "../fixtures/data.json"
-import Login from '../support/classes/login';
-import Logout from '../support/classes/logout';
 import Tasks from '../support/classes/tasks';
 import Boards from '../support/classes/boards';
 
-const login = new Login();
-const logout = new Logout();
 const tasks = new Tasks();
 const boards = new Boards();
 let orgId;
@@ -15,34 +11,16 @@ let boardId;
 describe("tasks module tests", () => {
 
     beforeEach("User needs to be login", () => {
-        cy.intercept({
-            method: "POST",
-            url: "api/v2/login",
-        }).as('login')
-        login.login(dataTask.user.email, dataTask.user.pass)
-        login.assertLogin();
-        cy.wait('@login').then((interceptObj) => {
-            expect(interceptObj.response.statusCode).eq(200)
-            expect(interceptObj.response.body.user.email).eq(dataTask.user.email)
-        })
+        cy.login()
     });
 
     afterEach("logout user", () => {
-        cy.intercept({
-            method: "POST",
-            url: "api/v2/logout",
-        }).as('logout')
-        logout.logout("Maja Cvet");
-        logout.assertLogout();
-        cy.wait('@logout').then((interceptObj) => {
-            expect(interceptObj.response.statusCode).eq(201)
-            expect(interceptObj.response.body.message).eq("Successfully logged out")
-        })
+        cy.logout()
     })
 
     //positive
     it("Create new task", () => {
-        boards.createBoard("test12345")
+        cy.addNewBoardApi()
         cy.intercept({
             method: "POST",
             url: "api/v2/tasks",
