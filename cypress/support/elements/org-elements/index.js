@@ -11,8 +11,7 @@ export default {
     clickOrg: ".vs-c-list__btn",
     clickConfig: "[class='vs-l-project__menu'] > ul > li",
     deleteOrg: "button > span",
-    editOrg: "span[title='Edit Organization']",
-    changeOrgName:"input[data-vv-as='name']" ,
+    changeOrgName:"[class='el-tooltip__popper is-dark']" ,
     checkEditedOrg: "i[class='el-icon-check']",
     confirmPassDeleteOrg: "input[type='password']",
     saveConfirmBtn: "button[name='save-btn']",
@@ -20,9 +19,11 @@ export default {
     arhiveOrgBtn : "button[class='vs-c-btn vs-c-btn--success vs-c-btn--spaced']",
     orgFromArhived: "[class='vs-c-my-organization organization-list-item']",
     deleteArhivedOrg: ".vs-c-icon--remove",
-    infoBoardOk: "[class='vs-c-modal--features-button']",
+    infoBoardOk: "[class='vs-c-btn vs-c-btn--primary vs-c-btn--lg vs-u-font-sm vs-c-modal--features-confirm-button']",
     configBtnSubmit: "button[type='submit']",
     listOrg: ".vs-l-my-organizations__content",
     nameOrg: "input[data-vv-as='name']",
-    deleteOrgBtn: "button[class='vs-c-btn vs-c-btn--warning vs-c-btn--spaced vs-u-gap--left']"
+    deleteOrgBtn: "button[class='vs-c-btn vs-c-btn--warning vs-c-btn--spaced vs-u-gap--left']",
+    editOrg: "span[title='Edit Organization']",
+    editOrgName: "[name='change-organization-name']"
 }
