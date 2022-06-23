@@ -1,0 +1,6 @@
+{
+    "baseUrl": "https://staging.acme.com",
+    "env": {
+      "something": "staging"
+    }
+  }

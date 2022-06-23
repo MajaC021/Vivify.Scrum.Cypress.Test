@@ -1,0 +1,6 @@
+{
+  "baseUrl": "https://production.acme.com",
+  "env": {
+    "something": "production"
+  }
+}

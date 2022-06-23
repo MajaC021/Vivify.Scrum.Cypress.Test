@@ -1,0 +1,6 @@
+{
+    "baseUrl": "https://qa.acme.com",
+    "env": {
+      "something": "qa"
+    }
+  }
