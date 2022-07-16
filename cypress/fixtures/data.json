@@ -4,7 +4,7 @@
         "invalidPass": "123456",
         "invalidEmail": "ttt.com",
         "nonExistEmail": "nnn@ggg.com",
-        "email": "test123456@gmail.com",
+        "email": "test1234567@gmail.com",
         "pass": "test12345"
     },
     "org": {
@@ -18,5 +18,29 @@
     "task": {
         "tskName": "testB",
         "editTskName": "testB123"
+    },
+        "apiBaseUrl": "https://cypress-api.vivifyscrum-stage.com",
+        "userApi": {
+            "email": "test1234567@gmail.com",
+            "password": "test12345"
+
+        },
+        "wrongData": {
+            "string": "shgdhgdsdhk"
+        },
+
+        "accounts": {
+           "user1": {
+            "email": "t12345678@gmail.com",
+            "password": "test1234"
+           },
+           "user2": {
+            "email": "t123456789@gmail.com",
+            "password": "test1234"
+           },
+           "user3": {
+            "email": "t1234567899@gmail.com",
+            "password": "test1234"
+           }
+        }
     }
-}
